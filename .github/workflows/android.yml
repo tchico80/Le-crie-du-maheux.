@@ -17,10 +17,13 @@ jobs:
           java-version: '17'
       - name: Installer Android SDK
         uses: android-actions/setup-android@v4
-      - name: Construire APK
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+      - - name: Installer Gradle
+  uses: gradle/actions/setup-gradle@v4
+  with:
+    gradle-version: '8.7'
+
+- name: Construire APK
+  run: gradle assembleDebug
       - name: Recuperer APK
         uses: actions/upload-artifact@v4
         with:
