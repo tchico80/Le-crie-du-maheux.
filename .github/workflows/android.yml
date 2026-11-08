@@ -16,7 +16,7 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Installer Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
       - name: Construire APK
         run: |
           chmod +x gradlew
