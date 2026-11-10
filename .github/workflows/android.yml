@@ -1,4 +1,3 @@
-
 name: Construire APK Android
 
 on:
@@ -19,27 +18,22 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-            
-      
-      
       - name: Installer Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          packages: ''
-
 
       - name: Installer Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
 
+      - name: Rendre gradlew executable
+        run: chmod +x gradlew
 
-      - name: Construire APK
-        run: gradle assembleDebug --stacktrace --info
+      - name: Compiler l'APK (Debug)
+        run: ./gradlew assembleDebug
 
-      - name: Recuperer APK
+      - name: Telecharger l'APK
         uses: actions/upload-artifact@v4
         with:
-          name: Le-Cri-du-Maheux-APK
+          name: app-debug
           path: app/build/outputs/apk/debug/*.apk
-
