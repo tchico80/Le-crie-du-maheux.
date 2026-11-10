@@ -21,8 +21,12 @@ jobs:
 
             
       
+      
       - name: Installer Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+
 
       - name: Installer Gradle
         uses: gradle/actions/setup-gradle@v4
