@@ -18,7 +18,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-                  - name: Installer Android SDK
+  - name: Installer Android SDK
         run: |
           echo "ANDROID_HOME=$ANDROID_HOME"
           yes | sdkmanager --licenses || true
