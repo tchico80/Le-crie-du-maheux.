@@ -29,7 +29,7 @@ jobs:
           gradle-version: '8.7'
 
       - name: Rendre gradlew executable
-        run: chmod +x gradlew
+        gradle assembleDebug
 
       - name: Compiler l'APK (Debug)
         run: ./gradlew assembleDebug
