@@ -1,4 +1,4 @@
-Name: Construire APK Android
+name: Construire APK Android
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Recuperer le projet
+      - name: Récupérer le projet
         uses: actions/checkout@v4
 
       - name: Installer Java 17
@@ -21,21 +21,19 @@ jobs:
       - name: Installer Android SDK
         uses: android-actions/setup-android@v4
         with:
-          packages: 'platform-tools'
+          packages: 'platform-tools platforms;android-35'
 
       - name: Installer Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
 
-      - name: Rendre gradlew executable
-        gradle assembleDebug
+      - name: Compiler l’APK de test
+        run: gradle assembleDebug
 
-      - name: Compiler l'APK (Debug)
-        run: ./gradlew assembleDebug
-
-      - name: Telecharger l'APK
+      - name: Déposer l’APK dans GitHub Actions
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
           path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
